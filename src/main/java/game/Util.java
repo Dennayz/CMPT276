@@ -9,4 +9,5 @@ public class Util {
 
         return (int)Math.sqrt((x * x) + (y * y));
     }
+
 }

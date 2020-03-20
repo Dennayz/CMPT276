@@ -6,9 +6,9 @@ public class Enemy extends Character{
 
     public static final int ENEMY_ID = 1;
 
-    private int enemyDirX;
-    private int enemyDirY;
-    private float DAMPING = 0.5f;
+    private int enemyDirX = 0;
+    private int enemyDirY = 0;
+    private float DAMPING = 0.1f;
 
     public Enemy(int x, int y, int health, int speed) {
         super(x, y, health, speed);
@@ -36,10 +36,11 @@ public class Enemy extends Character{
             if (enemyDirY < -maxSpeed) {
                 enemyDirY = (int) -maxSpeed;
             }
-
         }
+
     }
 
+    //getters functions for returning current enemy's speed and direction
     public int getEnemyDirX() {
         return this.enemyDirX;
     }
@@ -48,6 +49,7 @@ public class Enemy extends Character{
         return this.enemyDirY;
     }
 
+    //return enemy type
     public int getType() {
         return ENEMY_ID;
     }

@@ -13,6 +13,7 @@ public class Character {
         this.playerY = y;
     }
 
+    ////////////////////////////////////GETTERS AND SETTERS METHODS////////////////////////////////////
     public void setHealth(int health) {
         this.health = health;
     }
@@ -42,7 +43,7 @@ public class Character {
     }
 
     public void setY(int y) {
-        this.playerX = y;
+        this.playerY = y;
     }
 
 
