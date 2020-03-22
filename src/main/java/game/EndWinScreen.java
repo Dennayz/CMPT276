@@ -23,7 +23,7 @@ public class EndWinScreen extends JPanel {
         winFrame.setVisible(true);
 
         //launch win screen image
-        ImageIcon img = new ImageIcon("res/winScreen.png");
+        ImageIcon img = new ImageIcon("src/main/resources/res/winScreen.png");
         panel = new JPanel(new GridLayout(1,1));
         JLabel background = new JLabel(img);
 

@@ -58,7 +58,7 @@ public class Start extends JPanel{
         exitButton.setBorder(null);
 
         //creates start screen background
-        ImageIcon img = new ImageIcon("res/startScreen.png");
+        ImageIcon img = new ImageIcon("src/main/resources/res/startScreen.png");
         JLabel background= new JLabel(img);
         background.add(startButton);
         background.add(exitButton);

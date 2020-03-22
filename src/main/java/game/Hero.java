@@ -2,6 +2,7 @@ package game;
 
 public class Hero extends Character {
 
+    //Player's ID
     public static final int PLAYER_ID = 2;
 
     public Hero(int x, int y, int health, int speed) {

@@ -4,8 +4,10 @@ import static game.Hero.PLAYER_ID;
 
 public class Enemy extends Character{
 
+    //enemies ID
     public static final int ENEMY_ID = 1;
 
+    //enemies direction and speed adjustment
     private int enemyDirX = 0;
     private int enemyDirY = 0;
     private float DAMPING = 0.1f;

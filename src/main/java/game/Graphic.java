@@ -97,19 +97,19 @@ public class Graphic extends JPanel implements KeyListener {
 
         //add in all image sprites to game when game loads
         try {
-            bufferedBackground = ImageIO.read(new File("res/grassBackground.png"));
-            bufferedWallsVertical = ImageIO.read(new File("res/vwall.png"));
-            bufferedWallsHorizontal = ImageIO.read(new File("res/hwall.png"));
-            bufferedCheese = ImageIO.read(new File("res/cheese_sprite.png"));
-            bufferedPlayer = ImageIO.read((new File("res/mouse.png")));
-            bufferedTrap = ImageIO.read(new File("res/trap.png"));
-            bufferedTrapSecond =  ImageIO.read(new File("res/trap.png"));
-            bufferedBirds = ImageIO.read(new File("res/birds.png"));
+            bufferedBackground = ImageIO.read(new File("src/main/resources/res/grassBackground.png"));
+            bufferedWallsVertical = ImageIO.read(new File("src/main/resources/res/vwall.png"));
+            bufferedWallsHorizontal = ImageIO.read(new File("src/main/resources/res/hwall.png"));
+            bufferedCheese = ImageIO.read(new File("src/main/resources/res/cheese_sprite.png"));
+            bufferedPlayer = ImageIO.read((new File("src/main/resources/res/mouse.png")));
+            bufferedTrap = ImageIO.read(new File("src/main/resources/res/trap.png"));
+            bufferedTrapSecond =  ImageIO.read(new File("src/main/resources/res/trap.png"));
+            bufferedBirds = ImageIO.read(new File("src/main/resources/res/birds.png"));
 
-            bufferedPlayerDown = ImageIO.read(new File("res/mouseDown.png"));
-            bufferedPlayerUp = ImageIO.read(new File("res/mouseUp.png"));
-            bufferedPlayerRight = ImageIO.read(new File("res/mouseRight.png"));
-            bufferedPlayerLeft = ImageIO.read(new File("res/mouseLeft.png"));
+            bufferedPlayerDown = ImageIO.read(new File("src/main/resources/res/mouseDown.png"));
+            bufferedPlayerUp = ImageIO.read(new File("src/main/resources/res/mouseUp.png"));
+            bufferedPlayerRight = ImageIO.read(new File("src/main/resources/res/mouseRight.png"));
+            bufferedPlayerLeft = ImageIO.read(new File("src/main/resources/res/mouseLeft.png"));
 
             owl = new ImageIcon(new URL("https://2.bp.blogspot.com/-W8eX-eT-q8w/W4vHy5WQ7tI/AAAAAAAav1I/W7IwxgzMHW0iBw_uXXoBcja5bVhirShTQCLcBGAs/s1600/AW1686559_17.gif")).getImage();
             bonusReward = new ImageIcon(new URL("https://gifimage.net/wp-content/uploads/2017/11/gold-stars-gif-6.gif")).getImage();
@@ -151,29 +151,16 @@ public class Graphic extends JPanel implements KeyListener {
 
             /**
              * detecting collison among player and enemies
-             * decrease player score when colliding with enemy
+             * kill player when colliding with enemy
              */
                 if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(enemyX, enemyY,50,50))) {
-                    drawEnemies = false;
-                    hero.setHealth(0);
-                    removeEnemies();
-                    game.dispose();
-                    endLoseScreen.create(hero.getHealth());
-
+                    showGameOver();
                 }
                 if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(enemyTwoX, enemyTwoY,50,50))) {
-                    drawEnemies = false;
-                    removeEnemies();
-                    hero.setHealth(0);
-                    game.dispose();
-                    endLoseScreen.create(hero.getHealth());
+                    showGameOver();
                 }
                 if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(hardEnemyX, hardEnemyY,50,50))) {
-                    drawEnemies = false;
-                    removeEnemies();
-                    hero.setHealth(0);
-                    game.dispose();
-                    endLoseScreen.create(hero.getHealth());
+                    showGameOver();
                 }
 
                 /**
@@ -187,6 +174,7 @@ public class Graphic extends JPanel implements KeyListener {
                         enemy.target(hero.getX(), hero.getY(), enemyX, enemyY, hero.getType(), enemy.getSpeed());
                         enemyX += enemy.getEnemyDirX();
                         enemyY += enemy.getEnemyDirY();
+
                         //enemy cannot see player through walls or move through them
                         if (new Rectangle(enemyX, enemyY, 40, 40).intersects(new Rectangle(780, 480,20,200))) {
                             enemyX -= enemy.getEnemyDirX();
@@ -280,7 +268,7 @@ public class Graphic extends JPanel implements KeyListener {
                     if (Util.dist(hero.getX(), hero.getY(), hardEnemyX, hardEnemyY) >= MELEE_RANGE) {
 
                         //attack the player once player is seen
-                        hardEnemy.target(hero.getX(), hero.getY(), hardEnemyX, hardEnemyY, hero.getType(), hardEnemy.getSpeed());
+                        hardEnemy.target(hero.getX(), hero.getY(), hardEnemyX, hardEnemyY, hero.getType(), hardEnemy.getSpeed() + 20);
                         hardEnemyX += hardEnemy.getEnemyDirX();
                         hardEnemyY += hardEnemy.getEnemyDirY();
 
@@ -351,7 +339,7 @@ public class Graphic extends JPanel implements KeyListener {
             g.drawImage(bufferedCheese,400,60,50,50,this);
         }
 
-        //set traps
+        //draw traps
         if (drawTrap)
             g.drawImage(bufferedTrap,900,540,50,50,this);
         if (drawTrapTwo)
@@ -445,6 +433,7 @@ public class Graphic extends JPanel implements KeyListener {
     @Override
     public void keyPressed (KeyEvent e){
         //checks player's UP location if there is a wall between player
+        //direction of player will be up
         if(e.getKeyCode() == KeyEvent.VK_W){
             switchUp = true;
             switchLeft = false;
@@ -453,49 +442,11 @@ public class Graphic extends JPanel implements KeyListener {
             if(!map.checkWallUp()) {
                 hero.moveUp();
             }
-            if (map.checkTrap()){
-                System.out.println("trap");
-                hero.setHealth(score -= 5);
-
-                //if player lands on trap, erase it from the board
-                if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(900, 540,50,50))) {
-                    drawTrap = false;
-                    setTrapTwoToFreeSpace();
-                }
-                else if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(240, 420,50,50))) {
-                    drawTrapTwo = false;
-                    setTrapOneToFreeSpace();
-                }
-
-            }
-            if(map.changeMega()){
-                System.out.println("MEGA");
-                hero.setHealth(score +=50);
-            }
-            if(map.changeBuff1()){
-                System.out.println("buff1");
-                hero.setHealth(score +=10);
-            }
-            if(map.changeBuff2()){
-                System.out.println("buff2");
-                hero.setHealth(score +=10);
-            }
-            if(map.changeBuff3()){
-                System.out.println("buff3");
-                hero.setHealth(score +=10);
-            }
-            if(map.checkExit()){
-                if(!map.buff1Check() && !map.buff2Check() && !map.buff3Check()) {
-                    System.out.println("exit");
-                    //YOU WIN SCREEN
-                    removeEnemies();
-                    game.dispose();
-                    endWinScreen.create(hero.getHealth());
-                }
-            }
+            checkForItemsAndWinState();
         }
 
         //checks player's DOWN location if there is a wall between player
+        //direction of player will be down
         if(e.getKeyCode() == KeyEvent.VK_S){
             switchDown = true;
             switchUp = false;
@@ -504,50 +455,12 @@ public class Graphic extends JPanel implements KeyListener {
             if(!map.checkWallDown()) {
                 hero.moveDown();
             }
-            if (map.checkTrap()){
-                System.out.println("trap");
-                hero.setHealth(score -= 5);
+            checkForItemsAndWinState();
 
-                //if player lands on trap, erase it from the board
-                if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(900, 540,50,50))) {
-                    drawTrap = false;
-                    setTrapTwoToFreeSpace();
-                }
-                else if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(240, 420,50,50))) {
-                    drawTrapTwo = false;
-                    setTrapOneToFreeSpace();
-                }
-            }
-            if(map.changeMega()){
-                System.out.println("MEGA");
-                hero.setHealth(score += 50);
-            }
-            if(map.changeBuff1()){
-                System.out.println("buff1");
-                hero.setHealth(score +=10);
-            }
-            if(map.changeBuff2()){
-                System.out.println("buff2");
-                hero.setHealth(score +=10);
-            }
-            if(map.changeBuff3()){
-                System.out.println("buff3");
-                hero.setHealth(score +=10);
-
-            }
-            if(map.checkExit()){
-                if(!map.buff1Check() && !map.buff2Check() && !map.buff3Check()) {
-                    System.out.println("exit");
-                    //YOU WIN SCREEN
-                    removeEnemies();
-                    game.dispose();
-                    endWinScreen.create(hero.getHealth());
-                }
-
-            }
         }
 
         //checks player's LEFT location if there is a wall between player
+        //direction of player will be left
         if(e.getKeyCode() == KeyEvent.VK_A){
             switchLeft = true;
             switchDown = false;
@@ -556,51 +469,12 @@ public class Graphic extends JPanel implements KeyListener {
             if(!map.checkWallLeft()) {
                 hero.moveLeft();
             }
-            if (map.checkTrap()){
-                System.out.println("trap");
-                hero.setHealth(score -= 5);
-
-                //if player lands on trap, erase it from the board
-                if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(900, 540,50,50))) {
-                    drawTrap = false;
-                    setTrapTwoToFreeSpace();
-                }
-                else if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(240, 420,50,50))) {
-                    drawTrapTwo = false;
-                    setTrapOneToFreeSpace();
-                }
-
-            }
-            if(map.changeMega()){
-                System.out.println("MEGA");
-                hero.setHealth(score += 50);
-            }
-            if(map.changeBuff1()){
-                System.out.println("buff1");
-                hero.setHealth(score +=10);
-            }
-            if(map.changeBuff2()){
-                System.out.println("buff2");
-                hero.setHealth(score +=10);
-            }
-            if(map.changeBuff3()){
-                System.out.println("buff3");
-                hero.setHealth(score +=10);
-            }
-            if(map.checkExit()){
-                if(!map.buff1Check() && !map.buff2Check() && !map.buff3Check()) {
-                    System.out.println("exit");
-                    //YOU WIN SCREEN
-                    removeEnemies();
-                    game.dispose();
-                    endWinScreen.create(hero.getHealth());
-
-                }
-            }
+            checkForItemsAndWinState();
 
         }
 
         //checks player's RIGHT location if there is a wall between player
+        //direction of player will be right
         if(e.getKeyCode() == KeyEvent.VK_D) {
             switchRight = true;
             switchDown = false;
@@ -609,54 +483,85 @@ public class Graphic extends JPanel implements KeyListener {
             if(!map.checkWallRight()) {
                 hero.moveRight();
             }
-            if (map.checkTrap()) {
-                System.out.println("trap");
-                hero.setHealth(score -= 5);
-
-                //if player lands on trap, erase it from the board
-                if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(900, 540, 50, 50))) {
-                    drawTrap = false;
-                    setTrapTwoToFreeSpace();
-                } else if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(240, 420, 50, 50))) {
-                    drawTrapTwo = false;
-                    setTrapOneToFreeSpace();
-                }
-            }
-            if(map.changeMega()){
-                System.out.println("MEGA");
-                hero.setHealth(score +=50);
-            }
-
-            if(map.changeBuff1()){
-                System.out.println("buff1");
-                hero.setHealth(score +=10);
-            }
-            if(map.changeBuff2()){
-                System.out.println("buff2");
-                hero.setHealth(score +=10);
-            }
-            if(map.changeBuff3()){
-                System.out.println("buff3");
-                hero.setHealth(score +=10);
-            }
-            if(map.checkExit()){
-                if(!map.buff1Check() && !map.buff2Check() && !map.buff3Check()) {
-                    System.out.println("exit");
-                    //YOU WIN SCREEN
-                    removeEnemies();
-                    game.dispose();
-                    endWinScreen.create(hero.getHealth());
-                }
-            }
+            checkForItemsAndWinState();
 
         }
+        //death by trap
         if(hero.getHealth() == 0){
             //game over screen
-            removeEnemies();
-            game.dispose();
-            endLoseScreen.create(hero.getHealth());
+            showGameOver();
         }
 
+    }
+
+    /////////////////////////////////////////////////////////////////////// ALL METHODS ///////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////// ALL METHODS ///////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////// ALL METHODS ///////////////////////////////////////////////////////////////////////////////////////
+
+    //functions for constantly checking if player landed on any type of buffs or traps
+    //show win screen if all rewards are picked up
+    public void checkForItemsAndWinState() {
+        if (map.checkTrap()) {
+            System.out.println("trap");
+            hero.setHealth(score -= 5);
+
+            //if player lands on trap, erase it from the board
+            if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(900, 540, 50, 50))) {
+                drawTrap = false;
+                setTrapTwoToFreeSpace();
+            } else if (new Rectangle(hero.getX(), hero.getY(), 50, 50).intersects(new Rectangle(240, 420, 50, 50))) {
+                drawTrapTwo = false;
+                setTrapOneToFreeSpace();
+            }
+        }
+
+        //bonus reward points
+        if(map.changeMega()){
+            System.out.println("MEGA");
+            hero.setHealth(score +=50);
+        }
+        //first reward's points
+        if(map.changeBuff1()){
+            System.out.println("buff1");
+            hero.setHealth(score +=10);
+        }
+        //second reward's points
+        if(map.changeBuff2()){
+            System.out.println("buff2");
+            hero.setHealth(score +=10);
+        }
+        //third reward's points
+        if(map.changeBuff3()){
+            System.out.println("buff3");
+            hero.setHealth(score +=10);
+        }
+        //when player lands on exit zone and has collected all rewards
+        if(map.checkExit()){
+            if(!map.buff1Check() && !map.buff2Check() && !map.buff3Check()) {
+                System.out.println("exit");
+                //YOU WIN SCREEN
+                showWinGame();
+
+            }
+        }
+
+    }
+
+    //show win game window
+    public void showWinGame() {
+        drawEnemies = false;
+        removeEnemies();
+        game.dispose();
+        endWinScreen.create(hero.getHealth());
+    }
+
+    //show loose game window
+    public void showGameOver() {
+        drawEnemies = false;
+        hero.setHealth(0);
+        removeEnemies();
+        game.dispose();
+        endLoseScreen.create(hero.getHealth());
     }
 
     //remove enemies after game is done

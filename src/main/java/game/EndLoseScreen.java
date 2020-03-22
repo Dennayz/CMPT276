@@ -31,7 +31,7 @@ public class EndLoseScreen extends JPanel{
         winFrame.setVisible(true);
 
         //launch game over screen image
-        img = new ImageIcon("res/GameOver.png");
+        img = new ImageIcon("src/main/resources/res/GameOver.png");
         panel = new JPanel(new GridLayout(1,1));
         background = new JLabel(img);
 
