@@ -100,11 +100,3 @@ $ open artifacts/apidocs/allpackages-index.html
 ## Documentation
 - For more information on Apache maven
     - [Apache Maven](https://maven.apache.org/what-is-maven.html "This link takes you to Apache Maven")
-    
-```sh
-[
-    {key value: count value},
-    {key value: count value},
-    ....
-]
-```
