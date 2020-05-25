@@ -118,6 +118,6 @@ if (count > 10) {
 
 | Resources | POST |
 | --------- | ---- |
-| datasets/<id>/header/frequency | content |
-| datasets/<id>/frequency | content |
+| datasets/id/header/frequency | content |
+| datasets/id/frequency | content |
 
