@@ -110,3 +110,8 @@ $ open artifacts/apidocs/allpackages-index.html
     ...
 ]
 ```
+```sh
+if (count > 10) {
+    return 0;
+}
+```
