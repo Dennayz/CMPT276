@@ -103,9 +103,10 @@ $ open artifacts/apidocs/allpackages-index.html
 
 ```sh
 [
-    {unqiue value: occurences},
-    {unqiue value: occurences},
-    {unqiue value: occurences},
+    {"unqiue value": "occurences"},
+    {"unqiue value": "occurences"},
+    {"unqiue value": "occurences"},
+    {"unqiue value": "occurences"},
     ...
 ]
 ```
