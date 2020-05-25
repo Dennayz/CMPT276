@@ -115,3 +115,8 @@ if (count > 10) {
     return 0;
 }
 ```
+```sh
+| Resources | POST |
+| --------- | ---- |
+| datasets/<id>/header/frequency |
+```
