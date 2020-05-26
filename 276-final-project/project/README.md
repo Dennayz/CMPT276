@@ -118,6 +118,6 @@ if (count > 10) {
 
 | Resources | POST | GET | PATCH | DELETE |
 | --------- | ---- | --- | ----- | ------ |
-| datasets/id/header/frequency | creates a list of all unique values  | content | content | content |
-| datasets/id/frequency | creates a list of top frequent unique values | content | content | content |
+| datasets/id/header/frequency | creates a list of all unique values  | content | minor update of frequency | Method not allowed (405) |
+| datasets/id/frequency | creates a list of top frequent unique values | content | minor update of top frequency count | Delete a specific frequency value |
 
