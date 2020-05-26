@@ -111,8 +111,19 @@ $ open artifacts/apidocs/allpackages-index.html
 ]
 ```
 ```sh
-if (count > 10) {
-    return 0;
+public ArrayList<Object> hashUniqueValues(String headerName) {
+    read information in paramter
+    process header column
+    
+    Map<Object, Integer> uniqueValues = new HashMap<>();
+    if data not in uniqueValues {
+        uniqueValues.put(data, 1);
+        countUnique++;
+    }
+    else {
+        uniqueValues.put(data, ++);
+    }
+    return list of countUnique and map of keys and its values
 }
 ```
 
