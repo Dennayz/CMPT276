@@ -116,8 +116,9 @@ if (count > 10) {
 }
 ```
 
-| Resources | POST |
+| Resources | POST 
+              (Create)|
 | --------- | ---- |
-| datasets/id/header/frequency | content |
+| datasets/id/header/frequency |  |
 | datasets/id/frequency | content |
 
