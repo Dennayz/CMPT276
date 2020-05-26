@@ -117,7 +117,7 @@ if (count > 10) {
 ```
 
 | Resources | POST | GET | PATCH | DELETE |
-| --------- | ---- |
+| --------- | ---- | --- | ----- | ------ |
 | datasets/id/header/frequency | creates a list of all unique values  | content | content | content |
 | datasets/id/frequency | creates a list of top frequent unique values | content | content | content |
 
