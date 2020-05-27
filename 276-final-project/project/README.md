@@ -102,13 +102,12 @@ $ open artifacts/apidocs/allpackages-index.html
     - [Apache Maven](https://maven.apache.org/what-is-maven.html "This link takes you to Apache Maven")
 
 ```sh
-[
-    {"unqiue value": "occurences"},
-    {"unqiue value": "occurences"},
-    {"unqiue value": "occurences"},
-    {"unqiue value": "occurences"},
-    ...
-]
+{
+ "headername" : {"name1" : 1, "name2" : 3, "name3" : 19}, 
+ "headername" : {"name1" : 1, "name2" : 3, "name3" : 19},
+ "headername" : {"name1" : 1, "name2" : 3, "name3" : 19},
+ ....
+}
 ```
 ```sh
 public ArrayList<Object> hashUniqueValues(String headerName) {
@@ -118,12 +117,12 @@ public ArrayList<Object> hashUniqueValues(String headerName) {
     Map<Object, Integer> uniqueValues = new HashMap<>();
     if data not in uniqueValues {
         uniqueValues.put(data, 1);
-        countUnique++;
+  
     }
     else {
         uniqueValues.put(data, ++);
     }
-    return list of countUnique and map of keys and its values
+    return list of mapped keys and its values
 }
 ```
 
