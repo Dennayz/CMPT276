@@ -109,6 +109,13 @@ $ open artifacts/apidocs/allpackages-index.html
  ....
 }
 ```
+
+```sh
+{
+ "headername" : {"name1" : 1, "name2" : 3, "name3" : 19} * offset
+}
+```
+
 ```sh
 public ArrayList<Object> hashUniqueValues(String headerName) {
     read information in paramter
