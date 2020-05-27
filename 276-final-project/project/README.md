@@ -112,7 +112,7 @@ $ open artifacts/apidocs/allpackages-index.html
 
 ```sh
 {
- "headername" : {"name1" : 1, "name2" : 3, "name3" : 19} * offset
+ "headername" : {"name1" : 1, "name2" : 3, "name3" : 19}
 }
 ```
 
@@ -137,5 +137,5 @@ public ArrayList<Object> hashUniqueValues(String headerName) {
 | Resources | GET | 
 | --------- | ---- |
 | datasets/id/stats | returns a list of objects with unique ooccurences for each header | 
-| datasets/id/stats?headerName=name&offset=10 | returns the unique occurrences for the specified header name and the top 10 most frequent values |
+| datasets/id/stats?headerName=name | returns the unique occurrences for the specified header name |
 
