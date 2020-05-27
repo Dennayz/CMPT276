@@ -110,17 +110,19 @@ $ open artifacts/apidocs/allpackages-index.html
 }
 ```
 ```sh
-public ArrayList<Object> hashUniqueValues(String headerName) {
+public ArrayList<Object> hashUniqueValues(ArrayList<String> headerNames) {
     read information in paramter
     process header column
     
-    Map<Object, Integer> uniqueValues = new HashMap<>();
-    if data not in uniqueValues {
-        uniqueValues.put(data, 1);
+    For each headerName {
+        Map<Object, Integer> uniqueValues = new HashMap<>();
+        if data not in uniqueValues {
+            uniqueValues.put(data, 1);
   
-    }
-    else {
-        uniqueValues.put(data, ++);
+        }
+        else {
+            uniqueValues.put(data, ++);
+        }
     }
     return list of mapped keys and its values
 }
