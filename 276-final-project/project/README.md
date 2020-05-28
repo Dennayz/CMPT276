@@ -116,6 +116,7 @@ $ open artifacts/apidocs/allpackages-index.html
 }
 ```
 
+
 ```sh
 public ArrayList<Object> hashUniqueValues(String headerName) {
     read information in paramter
@@ -139,4 +140,14 @@ public ArrayList<Object> hashUniqueValues(String headerName) {
 | datasets/id/stats | returns a list of objects with unique ooccurences for each header | 
 | datasets/id/stats?headerName=name&rank=rank | returns the unique occurrences for the specified header name and the number of frequent unique values want returned |
 | datasets/id/stats?headerName=&rank=rank | returns a list of objects with the specified frequency rank for all the headers |
+
+
+```sh
+{
+ "headername" : {"range1" : #, "name2" : #, "name3" : #}, 
+ "headername" : {"range2" : #, "name2" : #, "name3" : #},
+ "headername" : {"range3" : #, "name2" : #, "name3" : #},
+ ....
+}
+```
 
