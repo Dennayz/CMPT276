@@ -144,10 +144,14 @@ public ArrayList<Object> hashUniqueValues(String headerName) {
 
 ```sh
 {
- "headername" : {"range1" : #, "name2" : #, "name3" : #}, 
- "headername" : {"range2" : #, "name2" : #, "name3" : #},
- "headername" : {"range3" : #, "name2" : #, "name3" : #},
+ "headername" : {"range1" : #, "range2" : #, "range3" : #}, 
+ "headername" : {"range1" : #, "range2" : #, "range3" : #},
+ "headername" : {"range1" : #, "range2" : #, "range3" : #},
  ....
 }
 ```
-
+```sh
+{
+ "headername" : {"range1" : #, "range2" : #, "range3" : #}
+}
+```
