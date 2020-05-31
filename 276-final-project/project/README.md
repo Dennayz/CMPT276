@@ -162,14 +162,14 @@ public ArrayList<Object> hashUniqueValues(String headerName) {
 
 ```sh
 {
- "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number}, 
- "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number},
- "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number},
+ "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number}, xrank
+ "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number}, xrank
+ "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number}, xrank
  ....
 }
 ```
 
 ```sh
 {
- "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number}
+ "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number} xrank
 }
