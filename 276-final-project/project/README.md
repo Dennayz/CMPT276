@@ -141,6 +141,8 @@ public ArrayList<Object> hashUniqueValues(String headerName) {
 | datasets/id/stats?headerName=name&rank=rank | returns the unique occurrences for the specified header name and the number of frequent unique values want returned |
 | datasets/id/stats?headerName=&rank=rank&buckets= | returns a list of objects with the specified frequency rank for all the headers |
 | datasets/id/stats?headerName=&rank=&buckets=buckets | returns a list of objects with the specified number of buckets for all the headers |
+| datasets/id/stats?headerName=&rank=&buckets=buckets | returns a list of objects with the specified number of buckets for all the headers |
+
 
 
 ```sh
@@ -156,3 +158,18 @@ public ArrayList<Object> hashUniqueValues(String headerName) {
  "headername" : {"range1" : #, "range2" : #, "range3" : #}
 }
 ```
+
+
+```sh
+{
+ "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number}, 
+ "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number},
+ "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number},
+ ....
+}
+```
+
+```sh
+{
+ "headername" : {"bucket1" : number, "bucket2" : number, "bucket3" : number}
+}
