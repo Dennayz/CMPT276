@@ -139,7 +139,8 @@ public ArrayList<Object> hashUniqueValues(String headerName) {
 | --------- | ---- |
 | datasets/id/stats | returns a list of objects with unique ooccurences for each header | 
 | datasets/id/stats?headerName=name&rank=rank | returns the unique occurrences for the specified header name and the number of frequent unique values want returned |
-| datasets/id/stats?headerName=&rank=rank | returns a list of objects with the specified frequency rank for all the headers |
+| datasets/id/stats?headerName=&rank=rank&buckets= | returns a list of objects with the specified frequency rank for all the headers |
+| datasets/id/stats?headerName=&rank=&buckets=buckets | returns a list of objects with the specified number of buckets for all the headers |
 
 
 ```sh
