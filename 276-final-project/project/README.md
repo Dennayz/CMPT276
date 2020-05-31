@@ -142,6 +142,8 @@ public ArrayList<Object> hashUniqueValues(String headerName) {
 | datasets/id/stats?headerName=&rank=rank&buckets= | returns a list of objects with the specified frequency rank for all the headers |
 | datasets/id/stats?headerName=&rank=&buckets=buckets | returns a list of objects with the specified number of buckets for all the headers |
 | datasets/id/stats?headerName=&rank=&buckets=buckets | returns a list of objects with the specified number of buckets for all the headers |
+| datasets/id/stats?headerName=&rank=rank&buckets=buckets | returns a list of objects with the specified number of buckets determined by the rank of all the headers |
+
 
 
 
