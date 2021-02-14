@@ -2,5 +2,5 @@
 
 ## Game Pictures
 
-![](https://github.com/Dennayz/BrickBreaker2D/blob/master/images/Gameplay.png)
-![](https://github.com/Dennayz/BrickBreaker2D/blob/master/images/Gameplay_screen.png)
+![](https://github.com/Dennayz/CMPT276/blob/master/menu.png)
+![](https://github.com/Dennayz/CMPT276/blob/master/gamescreen.png)
